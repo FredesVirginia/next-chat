@@ -2,11 +2,11 @@ import Image from 'next/image'
 
 export default function NavBar() {
   return (
-    <div className='flex py-3 space-x-20 items-center bg-red-400 px-2 border-b border-gray-300  '>
-      <span lassName='text-xl'> Chat Fazt</span>
+    <div className=' text-white flex py-3 space-x-20 items-center bg-blue-800 px-2   '>
+      <p className='text-sm font-extrabold'> Chat Fazt</p>
       <div className='flex space-x-2 items-center'>
         <Image
-          src="/img/perfil3.png"
+          src="/img/1.png"
           width={30}
           height={30}
           alt="Picture of the author"
@@ -14,7 +14,7 @@ export default function NavBar() {
         />
         <p className='text-sm'>Jonh</p>
       
-        <button className='text-sm'> Log Out</button>
+        <button className='text-sm bg-blue-600  px-1 p-1'> Log Out</button>
       </div>
     </div>
   )
