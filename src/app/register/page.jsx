@@ -1,9 +1,15 @@
+"use client"
 import Image from 'next/image'
 
 export default function Register() {
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+            console.log(e.target[0].value);
+    }
     return (
         <div className='flex justify-center align-center mt-[60px]'>
-            <form className='w-[350px] bg-white h-30 text-gray-600 flex flex-col p-10 lg:p-10 rounded-md'>
+            <form onSubmit={handleSubmit} className='w-[350px] bg-white h-30 text-gray-600 flex flex-col p-10 lg:p-10 rounded-md'>
             <h1 className='text-center text-xl mb-3'> Chat Fazt </h1>
                 <h1 className='text-center '>Registro </h1>
                 <div className='flex flex-col space-y-1'>
