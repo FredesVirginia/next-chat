@@ -1,6 +1,8 @@
 "use client"
 import Image from 'next/image'
 import {auth , storage , db} from "@/firebase";
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
 import {  createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
 import { getStorage ,ref, uploadBytesResumable , getDownloadURL} from "firebase/storage"
 import toast from 'react-hot-toast';
@@ -8,7 +10,8 @@ import toast from 'react-hot-toast';
 import {doc , setDoc} from "firebase/firestore";
 
 export default function Register() {
-  
+  const { currentUser } = useContext(AuthContext);
+  console.log("El usuario es: ", currentUser);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -64,8 +67,9 @@ export default function Register() {
     
     return (
         <div className='flex justify-center align-center mt-[60px]'>
+          
             <form onSubmit={handleSubmit} className='w-[350px] bg-white h-30 text-gray-600 flex flex-col p-10 lg:p-10 rounded-md'>
-                <h1 className='text-center text-xl mb-3'> Chat Fazt </h1>
+                <h1 className='text-center text-white  text-xl mb-3 bg-blue-700 '> Chat Fazt </h1>
                 <h1 className='text-center '>Registro </h1>
                 <div className='flex flex-col space-y-1'>
                     <label className='text-sm'>Nombre</label>
