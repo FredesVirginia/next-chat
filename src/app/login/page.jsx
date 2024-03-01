@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 export default function Login() {
   const { currentUser } = useContext(AuthContext);
-  console.log("El usuario es: ", currentUser);
+
 
   const handleSubmit = async (e) =>{
     e.preventDefault();

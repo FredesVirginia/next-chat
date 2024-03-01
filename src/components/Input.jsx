@@ -16,18 +16,16 @@ export default function Input() {
 
 
   const handleSend = async () => {
-    if (!data.chatId) {
-      console.log("El valor de data chatId es", data.chatId);
-      return;
-    }
+  
+   
+   
     if(img){
-      const storageRef = ref(storage, uuid);
+     let uuuid = uuid();
+    
+      const storageRef = ref(storage,uuuid);
       const uploadTask = uploadBytesResumable(storageRef, img);
       uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          // Manejar cambios de estado durante la carga, si es necesario
-        },
+       
         (error) => {
           console.error('Error durante la carga de la imagen:', error);
           
@@ -60,8 +58,23 @@ export default function Input() {
         }),
       });
     }
+
+    await updateDoc(doc(db, "userChats", currentUser.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
   
-   
+    await updateDoc(doc(db, "userChats", data.user.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+  
+   setText("");
+   setImg(null);
    
   };
 
