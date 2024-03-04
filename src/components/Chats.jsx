@@ -10,30 +10,21 @@ export default function Chats() {
 
   const [chats , setChats] = useState([]);
   const {currentUser} = useContext(AuthContext);
-  const {dispatch} = useContext(ChatContext);
-  console.log("el current user es " , currentUser);
+  const {dispatch} = useContext(ChatContext)
+  
   useEffect(() => {
     const getChats = () => {
-      if (currentUser) {
-        const docRef = doc(db, 'userChats', currentUser.uid);
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
 
-        const unsub = onSnapshot(docRef, (doc) => {
-          if (doc.exists()) {
-            console.log("EL DOC DATA ES  1233" , doc.data());
-            setChats(doc.data());
-          } else {
-            setChats([]); // Si el documento no existe, establece los chats como un array vacío
-          }
-        });
-
-        return () => {
-          unsub();
-        };
-      }
+      return () => {
+        unsub();
+      };
     };
 
     currentUser.uid && getChats();
-  }, [currentUser]);
+  }, [currentUser.uid]);
 
   console.log('Los chat son en el componente de chat', chats);
   console.log("EL current user en chat es  " , currentUser);
@@ -46,21 +37,24 @@ export default function Chats() {
   console.log("Los chat en el inf de cha es ", chats)
   }
 return (
- <div className='flex-2'>
-  {Object.values(chats)?.map((chat) => (
-    <div
-      className='p-2 flex items-center gap-3 text-white cursor-pointer hover:bg-indigo-900 transition'
-      key={chat.id}  // Usa el ID del chat como clave si está disponible
-      onClick={() => handleSelect(chat)}
-    >
-      <img src={chat.photoURL} alt="" className='w-[40px] rounded-full' />
-      <div>
-        <span className='text-gray-300'>{chat.displayName}</span>
-        <p>AAAA--- {chat.lastMessage?.text}</p>
+  <div className='flex-2'>
+   {
+Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat)  => (
+  <div
+          className='p-2 flex items-center gap-3 text-white cursor-pointer  hover:bg-indigo-900 transition'
+        key={chat[0]}
+        onClick={() => handleSelect(chat[1])}
+      >
+        <img src={chat[1].photoURL} alt="" className='w-[60px] rounded-full' />
+        <div >
+          <span className='text-gray-300'>{chat[1].displayName}</span>
+          <p>{chat[1].lastMessage?.text}</p>
+        </div>
       </div>
-    </div>
-  ))}
-</div>
+))
+}
 
+    
+  </div>
 )
 }

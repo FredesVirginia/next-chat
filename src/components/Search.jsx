@@ -48,27 +48,36 @@ export default function Search() {
        
        //create user chats
 
-       await updateDoc(doc(db, "userChats", currentUser.uid), {
-         [combineId + "userInfo"]: {
-           uid: user.uid,
-           displayName: user.displayName,
-           photoURL: user.photoURL,
-         },
-         [combineId + ".date"]: serverTimestamp(),
-       });
-       
-
-
-        await updateDoc(doc(db , "userChats", user.uid) , {
-         [combineId+"userInfo"] : {
-           uid:currentUser.uid,
-           displayName : currentUser.displayName,
-           photoURL: currentUser.photoURL
-         } ,
-         [combineId+".date"]: serverTimestamp()
-       })
+       try {
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          [combineId + "userInfo"]: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          },
+          [combineId + ".date"]: serverTimestamp(),
+        });
+        
+ 
+ 
+         await updateDoc(doc(db , "userChats", user.uid) , {
+          [combineId+"userInfo"] : {
+            uid:currentUser.uid,
+            displayName : currentUser.displayName,
+            photoURL: currentUser.photoURL
+          } ,
+          [combineId+".date"]: serverTimestamp()
+        }) 
+        console.log("Colección creada exitosamente");
+      } catch (error) {
+        console.error("Error al crear la colección", error);
+      }
+      
     
     
+     }
+     else{
+      console.log("YA EXISTE LA EL REGISTRO" , res );
      }
    
    }catch(error){
