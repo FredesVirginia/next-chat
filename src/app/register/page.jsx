@@ -10,60 +10,56 @@ import toast from 'react-hot-toast';
 import {doc , setDoc} from "firebase/firestore";
 
 export default function Register() {
-  const { currentUser } = useContext(AuthContext);
-  console.log("El usuario es: ", currentUser);
+  
+ 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(e.target[0].value);
-        const displayName = e.target[0].value;
-        const email = e.target[1].value;
-        const password = e.target[2].value;
-        const file = e.target[3].files[0];
+  const handleSubmit = async (e) => {
+   
+    e.preventDefault();
+    const displayName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const file = e.target[3].files[0];
 
-        try {
-            const res = await createUserWithEmailAndPassword(auth, email, password);
-        
-            const storageRef = ref(storage, `profile_images/${res.user.uid}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-        
-            uploadTask.on(
-              'state_changed',
-              (snapshot) => {
-                // Manejar cambios de estado durante la carga, si es necesario
-              },
-              (error) => {
-                console.error('Error durante la carga de la imagen:', error);
-                
-              },
-              async () => {
-                // La carga se completó con éxito, obtener la URL de descarga
-                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        
-                // Actualizar el perfil del usuario
-                await updateProfile(res.user, {
-                  displayName,
-                  photoURL: downloadURL,
-                });
-        
-                // Almacenar información adicional en Firestore
-                await setDoc(doc(db, 'users', res.user.uid), {
-                  uid: res.user.uid,
-                  displayName,
-                  email,
-                  photoURL: downloadURL,
-                });
-      
-                await setDoc(doc(db , "userChats" , res.user.uid), {});
-        
-                console.log('Registro exitoso');
-                window.location.href = '/';
-              }
-            );
-          } catch (error) {
-            console.error('Error durante la creación del usuario :', error);
+    try {
+      //Create user
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      //Create a unique image name
+      const date = new Date().getTime();
+      const storageRef = ref(storage, `${displayName + date}`);
+
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            //Update profile
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            //create user on firestore
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
+
+            //create empty user chats on firestore
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            toast("Registro Correcto")
+            window.location.href = '/';
+          } catch (err) {
+            toast.error("Ocurrio un Error")
+            console.log(err);
+           
           }
-        };
+        });
+      });
+    } catch (err) {
+      toast.error("Ocurrio un Error")
+    }
+  };
     
     return (
         <div className='flex justify-center align-center mt-[60px]'>

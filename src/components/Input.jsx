@@ -9,11 +9,11 @@ import { v4 as uuid} from "uuid";
 import { ref, uploadBytesResumable , getDownloadURL } from 'firebase/storage';
 export default function Input() {
 
-  const [text , setText] = useState("");
-  const[img , setImg] = useState(null);
-  const {currentUser} = useContext(AuthContext);
-  const {data} = useContext(ChatContext);
+  const [text, setText] = useState("");
+  const [img, setImg] = useState(null);
 
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
     if (img) {
@@ -72,8 +72,9 @@ export default function Input() {
     <div className=' bg-white border-t border-gray-300 px-2 py-3 px-1'>
      <div className="flex items-center">
         <input className="mr-40 w-full" placeholder="Escribee"  
-         onChange={e=>setText(e.target.value)} 
-         value={text}/>
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+       />
         <div className=" flex items-center  space-x-3">
         <input style={{display : "none"}} type="file" id="file"   onChange={e => setImg(e.target.files[0])}/>
             <label className='cursor-pointer' htmlFor="file">

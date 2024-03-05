@@ -8,92 +8,78 @@ import {AuthContext} from "@/context/AuthContext";
 
 
 export default function Search() {
-  const [userName , setUserName] = useState("");
-  const [user , setUser] = useState(null);
-  
-  const {currentUser} = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+  const [err, setErr] = useState(false);
 
-  const handleSearch = async  ()=>{
-    const q =query (
-     collection(db, "users"),
-     where("displayName" , "==" , userName) 
+  const { currentUser } = useContext(AuthContext);
+
+  const handleSearch = async () => {
+    const q = query(
+      collection(db, "users"),
+      where("displayName", "==", username)
     );
-    try{
-       const querySnapshot = await getDocs(q);
-       querySnapshot.forEach((doc) =>{
-         setUser(doc.data())
-       })
-    }catch(error){
-       setError(true);
-       console.log("Error en searbar"  , error)
+
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setUser(doc.data());
+      });
+    } catch (err) {
+      setErr(true);
     }
- }
+  };
 
- const handleKey = (e)=> {
-   e.code === "Enter" && handleSearch();
- }
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSearch();
+  };
 
- const handleSelect= async (e)=>{
-   const combineId = currentUser.uid > user.uid
-   ? currentUser.uid + user.uid
-   : user.uid + currentUser.uid;
-    try{
+  const handleSelect = async () => {
+    //check whether the group(chats in firestore) exists, if not create
+    const combinedId =
+      currentUser.uid > user.uid
+        ? currentUser.uid + user.uid
+        : user.uid + currentUser.uid;
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
 
-     const res = await getDoc(doc(db , "chats" , combineId)); 
-     if(!res.exists()){
-       //create a chat in chats collecion
-  
-       await setDoc(doc(db, "chats", combineId), { messages: [] });
+      if (!res.exists()) {
+        //create a chat in chats collection
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
-       
-       //create user chats
-
-       try {
+        //create user chats
         await updateDoc(doc(db, "userChats", currentUser.uid), {
-          [combineId + "userInfo"]: {
+          [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
             photoURL: user.photoURL,
           },
-          [combineId + ".date"]: serverTimestamp(),
+          [combinedId + ".date"]: serverTimestamp(),
         });
-        
- 
- 
-         await updateDoc(doc(db , "userChats", user.uid) , {
-          [combineId+"userInfo"] : {
-            uid:currentUser.uid,
-            displayName : currentUser.displayName,
-            photoURL: currentUser.photoURL
-          } ,
-          [combineId+".date"]: serverTimestamp()
-        }) 
-        console.log("Colección creada exitosamente");
-      } catch (error) {
-        console.error("Error al crear la colección", error);
+
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
       }
-      
-    
-    
-     }
-     else{
-      console.log("YA EXISTE LA EL REGISTRO" , res );
-     }
-   
-   }catch(error){
-       console.log(error);
-    }
+    } catch (err) {}
 
     setUser(null);
-    setUserName("");
- }
+    setUsername("")
+  };
 
   return (
     <div className="bg-color2 w-full">
       <input 
-        onChange={e=>setUserName(e.target.value)}
+        type="text"
+     
         onKeyDown={handleKey}
-        value = {userName} 
+        onChange={(e) => setUsername(e.target.value)}
+        value={username}
       className='w-full pl-4  text-white bg-color2 py-2 text-sm italic  border-b border-gray-300' placeholder='Buscar contacto'/>
        {user &&
            <div className=' pl-3 py-2 flex space-x-2 items-center text-black hover:bg-indigo-700 hover:text-white'

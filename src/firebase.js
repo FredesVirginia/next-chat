@@ -7,21 +7,22 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyA8HE1-ATzUeM3cIj_Z4GHnPM7vZ8iI1J8",
+  apiKey: "AIzaSyDLNS9-iJTY8hPLbGUIQJzQ8NSu_1LXA1Y",
 
-  authDomain: "neext-chat.firebaseapp.com",
+  authDomain: "prueba-chat-a6de0.firebaseapp.com",
 
-  projectId: "neext-chat",
+  projectId: "prueba-chat-a6de0",
 
-  storageBucket: "neext-chat.appspot.com",
+  storageBucket: "prueba-chat-a6de0.appspot.com",
 
-  messagingSenderId: "1052529757678",
+  messagingSenderId: "789379801148",
 
-  appId: "1:1052529757678:web:f7838cc5fea5d15a2392ff",
+  appId: "1:789379801148:web:620108a473728af4f32339",
 
-  measurementId: "G-QP49L4KVYS"
+  measurementId: "G-XND36ME7JH"
 
 };
+
 
 
 // Initialize Firebase

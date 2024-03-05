@@ -1,25 +1,45 @@
-import Image from 'next/image'
+import Image from 'next/image';
+import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
-import { useState } from 'react';
-
-export default function Message({message}) {
-  const {currentUser} = useContext(AuthContext);
-  const {data} = useContext(ChatContext);
- 
 
 
-  console.log("EL menssaje es " , message);
+export default function Message({ message }) {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
+
+
+
+  console.log("EL menssaje es ", message);
   return (
-    <div className=''>
-          <div className=' pl-3 py-2 flex  space-x-2 items-center'>
-          <p className='text-sm bg-color3 text-gray-700 rounded-full  px-3'>Hello</p>
-      
-        
-      
-       
+    <div
+      ref={ref}
+      className=' flex py-3  items-center space-x-4 space-y-4'
+    >
+
+      <div className="p-2 bg-color3 rounded-md">
+        <p>{message.text}</p>
+        {message.img && <img src={message.img} alt="" />}
       </div>
-      <span className='text-gray-600 font-sm'>Just Now</span>
+      <div className="">
+        <img
+          src={
+            message.senderId === currentUser.uid
+              ? currentUser.photoURL
+              : data.user.photoURL
+          }
+
+          alt="" className='w-[30px] rounded-full mb-4'
+        />
+
       </div>
+
+    </div>
   )
 }
