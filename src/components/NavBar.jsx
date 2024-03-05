@@ -7,7 +7,7 @@ export default function NavBar() {
 
   const {currentUser} = useContext(AuthContext);
   return (
-    <div className=' text-white flex py-3 space-x-20 items-center bg-blue-800 px-2   '>
+    <div className=' text-white flex py-3 justify-between items-center bg-color1 px-4   '>
       <p className='text-sm font-extrabold'> Chat Fazt</p>
       <div className='flex space-x-2 items-center'>
         <Image
@@ -19,7 +19,7 @@ export default function NavBar() {
         />
         <p className='text-sm'>{currentUser.displayName}</p>
       
-        <button onClick={() =>signOut(auth)} className='text-sm bg-blue-600  px-1 p-1'> Log Out</button>
+        <button onClick={() =>signOut(auth)} className='text-sm bg-color3  px-1 p-1'> Log Out</button>
       </div>
     </div>
   )

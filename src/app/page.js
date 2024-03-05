@@ -22,9 +22,9 @@ export default function Home() {
     return children;
   }
   return (
-       <div className=' flex justify-center align-center mt-[60px]'>
+       <div className=' flex justify-center align-center mt-[60px]   '>
         <ProtectedRoute>
-        <div className='flex bg-red-100 w-[750px] h-[430px] rounded-full'>
+        <div className='flex bg-color2 w-[800px] h-[430px] rounded-lg border border-white  '>
            <SildeBar/>
            <Chat/>
          </div>

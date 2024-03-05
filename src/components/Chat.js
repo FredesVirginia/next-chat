@@ -10,8 +10,8 @@ export default function Chat() {
 
 
   return (
-    <div className='w-[500px] bg-white'>
-       <div className=' h-[62px] text-white flex  py-7  items-center bg-blue-700 px-2   '>
+    <div className='w-[600px] bg-color4'>
+       <div className=' h-[60px] text-white flex justify-between py-7  items-center bg-color3 px-4   '>
       <span className='mr-[350px]'>  {data.user?.displayName} </span>
       <FiAlignJustify />
        </div>

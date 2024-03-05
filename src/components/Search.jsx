@@ -89,12 +89,12 @@ export default function Search() {
  }
 
   return (
-    <div >
+    <div className="bg-color2 w-full">
       <input 
         onChange={e=>setUserName(e.target.value)}
         onKeyDown={handleKey}
         value = {userName} 
-      className='w-full pl-4 py-2 text-sm italic border-r border-gray-300' placeholder='Buscar contacto'/>
+      className='w-full pl-4  text-white bg-color2 py-2 text-sm italic  border-b border-gray-300' placeholder='Buscar contacto'/>
        {user &&
            <div className=' pl-3 py-2 flex space-x-2 items-center text-black hover:bg-indigo-700 hover:text-white'
            onClick={handleSelect}

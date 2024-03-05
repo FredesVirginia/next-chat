@@ -13,7 +13,7 @@ export default function Message({message}) {
   return (
     <div className=''>
           <div className=' pl-3 py-2 flex  space-x-2 items-center'>
-          <p className='text-sm bg-blue-200 text-gray-700 rounded-full  px-3'>Hello</p>
+          <p className='text-sm bg-color3 text-gray-700 rounded-full  px-3'>Hello</p>
       
         
       
