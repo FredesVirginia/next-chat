@@ -33,33 +33,51 @@ export default function Chats() {
 
 
 
-  const handleToggleSidebar = () => {
+  
 
-    dispatch({
-      type: "TOGGLE_SIDEBAR",
-      payload: false,
-    });
+  /*   
+   const handleBackToSidebar = () => {
+    setMostrarChat(false);
+
+
+
+
+  
 
   };
+  };
+
+
+
+
+  
+  */ 
 
   const handleSelect = (u) => {
     dispatch({ type: 'CHANGE_USER', payload: u });
   
   };
 
+  const handleToggleSidebar = () => {
 
-
-  const handleBackToSidebar = () => {
-    setMostrarChat(false);
-  };
+    dispatch({
+      type: "TOGGLE_SIDEBAR",
+      payload: true,
+    });
+  }
+ 
+    const handleSelect2 = (u) => {
+      dispatch({ type: 'CHANGE_USER', payload: u });
+      handleToggleSidebar();
+    };
   return (
     <div className='flex-2'>
-      <div className=''>
+      <div className='hidden lg:block'>
         {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
           <div
             className='px-4 mt-2 flex items-center gap-3 text-white cursor-pointer bg-color2 hover:bg-color1 transition'
             key={chat[0]}
-            onClick={() => handleSelect(chat[1].userInfo)}
+            onClick={() => handleSelect2(chat[1].userInfo)}
           >
             <img src={chat[1].userInfo.photoURL} alt="" className='w-[40px] rounded-full' />
             <div >
@@ -70,11 +88,28 @@ export default function Chats() {
         ))
         }</div>
 
+
+<div className='block sm:hidden'>
+        {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
+          <div
+            className='px-4 mt-2 flex items-center gap-3 text-white cursor-pointer bg-color2 hover:bg-color1 transition'
+            key={chat[0]}
+            onClick={() => handleSelect(chat[1].userInfo)}
+          >
+            <img src={chat[1].userInfo.photoURL} alt="" className='w-[40px] rounded-full' />
+            <div >
+              <span className='text-gray-300'> {chat[1].userInfo.displayName} </span>
+              <p>HOLA {chat[1].lastMessage?.text} </p>
+            </div>
+          </div>
+        ))
+        }</div>
+
      
 
 
     
-    
+
 
 
     </div>
