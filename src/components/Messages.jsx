@@ -23,7 +23,7 @@ export default function Messages() {
 
   
   return (
-    <div className='text-center h-[320px] flex flex-col items-end px-5'>
+    <div className='text-center  bg-gray-300 h-[320px] flex flex-col items-end px-5'>
         {messages.map((m) => (
         <Message message={m} key={m.id} />
       ))}

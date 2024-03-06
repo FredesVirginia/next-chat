@@ -10,7 +10,8 @@ export const ChatContextProvider = ({ children }) => {
     const {currentUser} = useContext(AuthContext);
     const INITIAL_STATE = {
         chatId:"null" , 
-        user:{}
+        user:{},
+        mostrarSidebar: true,
     }
 
     const chatReducer = (state, action)=>{
@@ -21,6 +22,12 @@ export const ChatContextProvider = ({ children }) => {
                     chatId : currentUser.uid > action.payload.uid
                     ?currentUser.uid + action.payload.uid
                     : action.payload.uid + currentUser.uid
+                };
+
+                case "TOGGLE_SIDEBAR": // Nuevo tipo de acción para cambiar la visibilidad del Sidebar
+                return {
+                  ...state,
+                  mostrarSidebar:  action.payload,
                 };
             default :
             return state;

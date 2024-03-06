@@ -20,10 +20,10 @@ export default function Message({ message }) {
   return (
     <div
       ref={ref}
-      className=' flex py-3  items-center space-x-4 space-y-4'
+      className=' flex  items-center space-x-4 space-y-2'
     >
 
-      <div className="p-2 bg-color3 rounded-md">
+      <div className="p-2 bg-color5 font-bold rounded-md text-white">
         <p>{message.text}</p>
         {message.img && <img src={message.img} alt="" />}
       </div>

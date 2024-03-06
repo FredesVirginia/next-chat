@@ -4,7 +4,7 @@ import Search from './Search';
 import Chats from './Chats';
 export default function SildeBar() {
   return (
-    <div className=' w-[450px] bg-colo2 '>
+    <div className='   bg-colo2 '>
         <NavBar/>
         <Search/>
         <Chats/>
