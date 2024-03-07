@@ -9,7 +9,7 @@ import { ChatContext } from '@/context/ChatContext';
 import { useContext } from 'react';
 export default function Home() {
   const { currentUser } = useContext(AuthContext);
-  console.log("El usuario es: ", currentUser);
+
   const { data: chatContextData } = useContext(ChatContext);
   const { mostrarSidebar } = chatContextData;
 
@@ -28,11 +28,12 @@ export default function Home() {
   return (
     <div className=' flex justify-center align-center min-h-screen lg:h-0 lg:mt-[60px]   '>
       <ProtectedRoute>
+      
         <div className='flex  lg:w-[800px] lg:h-[430px] rounded-lg border border-white'>
-          <div className={` lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block' : 'hidden'}`}>
+          <div className={` w-[400px]  lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block' : 'hidden'}`}>
             <SildeBar />
           </div>
-          <div className={`lg:block  w-[600px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block'}`}>
+          <div className={`w-[350px] lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block'}`}>
             <Chat />
           </div>
         </div>

@@ -47,10 +47,10 @@ export default function Register() {
 
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            toast("Registro Correcto")
+            toast.success("Registro Correcto")
             window.location.href = '/';
           } catch (err) {
-            toast.error("Ocurrio un Error")
+            toast.error("Correo en Uso/Prueba otra clave")
             console.log(err);
            
           }
@@ -86,7 +86,7 @@ export default function Register() {
                         <input type="file" className='text-sm' />
                     </div>
                     <button className='bg-blue-200 py-1 hover:bg-blue-400 hover:text-white ' >Registrarse</button>
-                    <p>¿Ya tienes cuentas? <a className='text-blue-400 underline' href='#'>Inicia secion</a></p>
+                    <p>¿Ya tienes cuentas? <a className='text-blue-400 underline' href='/login'>Inicia secion</a></p>
                 </div>
             </form>
         </div>

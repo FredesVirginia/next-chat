@@ -15,10 +15,10 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast("Iniciaste seccion!")
+      toast.success("Iniciaste seccion!")
       window.location.href = '/';
     } catch (err) {
-      toast.error("Error.Intentalo de Nuevo")
+      toast.error("Credenciales Incorrectas")
      
     }
   };
@@ -26,7 +26,7 @@ export default function Login() {
   return (
     <div className='flex justify-center align-center mt-[60px]'>
     <form  onSubmit={handleSubmit} className='w-[350px] bg-white h-30 text-gray-600 flex flex-col justify-center align-center p-10 lg:p-10 rounded-md'>
-    <h1 className='text-center text-xl mb-3 font-bold '> Chat Fazt </h1>
+    <h1 className='text-center text-white  text-xl mb-3 bg-blue-700 '> Chat Fazt </h1>
         <h1 className='text-center '> Iniciar Secion </h1>
         <div className='flex flex-col space-y-3'>
             
@@ -37,7 +37,7 @@ export default function Login() {
            
           
             <button className=' w-[260px] bg-blue-200 py-1 hover:bg-blue-400 hover:text-white ' >Ingresar</button>
-            <p>¿No tienes cuenta? <a className='text-blue-400 underline' href='#'>Registrate Aqui</a></p>
+            <p>¿No tienes cuenta? <a className='text-blue-400 underline' href='/register'>Registrate Aqui</a></p>
         </div>
     </form>
 </div>

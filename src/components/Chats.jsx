@@ -35,24 +35,7 @@ export default function Chats() {
 
   
 
-  /*   
-   const handleBackToSidebar = () => {
-    setMostrarChat(false);
-
-
-
-
   
-
-  };
-  };
-
-
-
-
-  
-  */ 
-
   const handleSelect = (u) => {
     dispatch({ type: 'CHANGE_USER', payload: u });
   
@@ -72,34 +55,34 @@ export default function Chats() {
     };
   return (
     <div className='flex-2'>
-      <div className='hidden lg:block'>
+      <div className='hidden lg:block overflow-auto'>
         {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
           <div
             className='px-4 mt-2 flex items-center gap-3 text-white cursor-pointer bg-color2 hover:bg-color1 transition'
             key={chat[0]}
             onClick={() => handleSelect2(chat[1].userInfo)}
           >
-            <img src={chat[1].userInfo.photoURL} alt="" className='w-[40px] rounded-full' />
+            <img src={chat[1].userInfo.photoURL} alt="" className='w-[30px] rounded-full' />
             <div >
-              <span className='text-gray-300'> {chat[1].userInfo.displayName} </span>
-              <p> {chat[1].lastMessage?.text} </p>
+              <span className=' font-bold   text-gray-300'> {chat[1].userInfo.displayName} </span>
+              <p className=' overflow-hidden overflow-ellipsis max-w-[150px]'> {chat[1].lastMessage?.text} </p>
             </div>
           </div>
         ))
         }</div>
 
 
-<div className='block sm:hidden'>
+<div className='block sm:hidden overflow-auto'>
         {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
           <div
             className='px-4 mt-2 flex items-center gap-3 text-white cursor-pointer bg-color2 hover:bg-color1 transition'
             key={chat[0]}
             onClick={() => handleSelect(chat[1].userInfo)}
           >
-            <img src={chat[1].userInfo.photoURL} alt="" className='w-[40px] rounded-full' />
+            <img src={chat[1].userInfo.photoURL} alt="" className='w-[50px] rounded-full' />
             <div >
-              <span className='text-gray-300'> {chat[1].userInfo.displayName} </span>
-              <p>HOLA {chat[1].lastMessage?.text} </p>
+              <span className=' font-bold  text-xl text-gray-300'> {chat[1].userInfo.displayName} </span>
+              <p className='overflow-hidden overflow-ellipsis max-w-[150px]'>HOLA {chat[1].lastMessage?.text} </p>
             </div>
           </div>
         ))

@@ -16,17 +16,18 @@ export default function Message({ message }) {
 
 
 
-  console.log("EL menssaje es ", message);
+
   return (
     <div
       ref={ref}
       className=' flex  items-center space-x-4 space-y-2'
     >
 
-      <div className="p-2 bg-color5 font-bold rounded-md text-white">
-        <p>{message.text}</p>
-        {message.img && <img src={message.img} alt="" />}
-      </div>
+<div className="p-2  max-w-60 lg:max-w-80 bg-color5 font-bold rounded-md text-white">
+  <p className='text-right max-w-full whitespace-normal break-words'>{message.text}</p>
+  {message.img && <img src={message.img} alt="" />}
+</div>
+
       <div className="">
         <img
           src={
