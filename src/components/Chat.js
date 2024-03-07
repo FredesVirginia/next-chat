@@ -15,7 +15,7 @@ export default function Chat() {
     });
   };
   return (
-    <div className='bg-color4 h-screen lg:h-0 flex flex-col'>
+    <div className='bg-gray-300 h-screen lg:h-0 flex flex-col'>
     <div className='h-[60px] text-white flex justify-between py-7 items-center bg-color3 px-4'>
       <span className=' mr-0 lg:mr-[350px]'>{data.user?.displayName}</span>
       <p onClick={handleToggleSidebar} className='text-white font-bold block lg:hidden'>

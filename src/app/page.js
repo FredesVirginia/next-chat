@@ -29,11 +29,18 @@ export default function Home() {
     <div className=' flex justify-center align-center min-h-screen lg:h-0 lg:mt-[60px]   '>
       <ProtectedRoute>
       
-        <div className='flex  lg:w-[800px] lg:h-[430px] rounded-lg border border-white'>
-          <div className={` w-[400px]  lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block' : 'hidden'}`}>
+        <div className='flex w-full h-screem lg:w-[800px] lg:h-[430px] rounded-lg '>
+          <div className={` bg-color2 lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block w-full' : 'hidden'}`}>
+          <div className='flex  lg:w-[800px] lg:h-[430px] rounded-lg '>
+          <div className={`  lg:block lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block w-full ' : 'hidden'}`}>
             <SildeBar />
           </div>
-          <div className={`w-[350px] lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block'}`}>
+          <div className={` lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block'}`}>
+            <Chat />
+          </div>
+        </div>
+          </div>
+          <div className={`w-[350px] lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block w-full'}`}>
             <Chat />
           </div>
         </div>

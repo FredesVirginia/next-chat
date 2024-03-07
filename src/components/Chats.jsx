@@ -72,17 +72,17 @@ export default function Chats() {
         }</div>
 
 
-<div className='block sm:hidden overflow-auto'>
+<div className='block mt-5 sm:hidden overflow-auto'>
         {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
           <div
-            className='px-4 mt-2 flex items-center gap-3 text-white cursor-pointer bg-color2 hover:bg-color1 transition'
+            className='px-4 mt-2 my-10 lg:my-0 flex items-center gap-3 text-white cursor-pointer bg-color2 hover:bg-color1 transition'
             key={chat[0]}
             onClick={() => handleSelect(chat[1].userInfo)}
           >
             <img src={chat[1].userInfo.photoURL} alt="" className='w-[50px] rounded-full' />
             <div >
               <span className=' font-bold  text-xl text-gray-300'> {chat[1].userInfo.displayName} </span>
-              <p className='overflow-hidden overflow-ellipsis max-w-[150px]'>HOLA {chat[1].lastMessage?.text} </p>
+              <p className='overflow-hidden overflow-ellipsis max-w-[150px]'> {chat[1].lastMessage?.text} </p>
             </div>
           </div>
         ))
