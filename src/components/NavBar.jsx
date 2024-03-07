@@ -20,7 +20,7 @@ export default function NavBar() {
   return (
     <div className=' text-white flex  py-10 lg:py-3 justify-between items-center bg-color1 px-4   '>
       <p className=' text-xl lg:text-sm font-extrabold'> Chat Fazt</p>
-      <div className='flex space-x-2 items-center'>
+      <div className='flex  space-x-4 items-center'>
         <Image
           src= {currentUser.photoURL}
           width={30}
@@ -30,7 +30,7 @@ export default function NavBar() {
         />
         <p className='text-xl  lg:text-sm'>{currentUser.displayName}</p>
       
-        <button onClick={logOut} className='text-xl lg:text-sm bg-color3  px-1 p-1'> Log Out</button>
+        <button onClick={logOut} className='  text-xl lg:text-sm bg-color3 px-4  py-3 lg:py-0 lg:px-1 p-1'> Log Out</button>
       </div>
     </div>
   )
