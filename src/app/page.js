@@ -27,25 +27,25 @@ export default function Home() {
   }
   return (
     <div className=' flex justify-center align-center min-h-screen lg:h-0 lg:mt-[60px]   '>
-      <ProtectedRoute>
+       <ProtectedRoute>
       
-        <div className='flex w-full h-screem lg:w-[800px] lg:h-[430px] rounded-lg '>
-          <div className={` bg-color2 lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block w-full' : 'hidden'}`}>
-          <div className='flex  lg:w-[800px] lg:h-[430px] rounded-lg '>
-          <div className={`  lg:block lg:w-[300px] bg-color2 ${mostrarSidebar ? 'block w-full ' : 'hidden'}`}>
-            <SildeBar />
-          </div>
-          <div className={` lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block'}`}>
-            <Chat />
-          </div>
+      <div className='flex w-full h-screem lg:w-[800px] lg:h-[430px] rounded-lg '>
+        <div className={` bg-color2 lg:w-[300px] bg-gray-300 lg:bg-color2 ${mostrarSidebar ? 'block w-full' : 'hidden'}`}>
+        <div className='flex  lg:w-[800px] lg:h-[430px] rounded-lg '>
+        <div className={`  lg:block lg:w-[300px] bg-gray-300 lg:bg-color2 ${mostrarSidebar ? 'block w-full ' : 'hidden'}`}>
+          <SildeBar />
         </div>
-          </div>
-          <div className={`w-[350px] lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block w-full'}`}>
-            <Chat />
-          </div>
+        <div className={` lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block'}`}>
+          <Chat />
         </div>
+      </div>
+        </div>
+        <div className={`w-[350px] lg:block  lg:w-[500px] bg-color2 ${mostrarSidebar ? 'hidden' : 'block w-full'}`}>
+          <Chat />
+        </div>
+      </div>
 
-      </ProtectedRoute>
+    </ProtectedRoute>
     </div>
   )
 }
