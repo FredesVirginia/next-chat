@@ -82,7 +82,7 @@ export default function Search() {
         onKeyDown={handleKey}
         onChange={(e) => setUsername(e.target.value)}
         value={username}
-      className='w-full pl-4  text-white bg-color2 py-2  text-2xl lg:text-sm italic  border border-gray-300' placeholder='Buscar contacto'/>
+      className='w-full pl-4  text-white bg-color2 py-2  text-sm italic  border border-gray-300' placeholder='Buscar contacto'/>
         <button onClick={handleSearch} className='block lg:hidden text-white bg-color3 p-2 px-8'> Buscar</button>
         
         </div>
